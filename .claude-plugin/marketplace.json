@@ -1,0 +1,16 @@
+{
+  "name": "ellen-white-library",
+  "owner": {
+    "name": "stepsergius"
+  },
+  "metadata": {
+    "description": "Ellen G. White public-domain writings: search and exact quotation skill for Claude."
+  },
+  "plugins": [
+    {
+      "name": "ellen-white",
+      "source": "./",
+      "description": "Search and quote Ellen G. White's public-domain writings with exact edition and page numbers."
+    }
+  ]
+}
