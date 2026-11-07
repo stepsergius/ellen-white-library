@@ -15,14 +15,34 @@ exact word sequence. --regex = Python regex on normalized text.
 Index / table-of-contents lines are skipped unless --include-index is given.
 Each hit prints: book code, edition, page(s), a link to the scan/source page, and the paragraph.
 """
-import gzip, json, os, re, sys, unicodedata
+import gzip, json, lzma, os, re, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LIB = os.path.normpath(os.path.join(HERE, "..", "library"))
 MARK = re.compile(r"\{p\. ([^}]+)\}")
 
+# Companion skills (e.g. "ellen-white-letters") installed next to this one are searched too.
+SKILLS_DIR = os.path.normpath(os.path.join(HERE, "..", ".."))
+OWN = os.path.basename(os.path.normpath(os.path.join(HERE, "..")))
+
+def _open(path):
+    if path.endswith(".gz"): return gzip.open(path, "rt", encoding="utf-8")
+    if path.endswith(".xz"): return lzma.open(path, "rt", encoding="utf-8")
+    return open(path, encoding="utf-8")
+
 def catalog():
-    return json.load(open(os.path.join(LIB, "catalog.json"), encoding="utf-8"))
+    libs = [LIB]
+    if os.path.isdir(SKILLS_DIR):
+        for d in sorted(os.listdir(SKILLS_DIR)):
+            other = os.path.join(SKILLS_DIR, d, "library")
+            if d != OWN and d.startswith("ellen-white") and os.path.exists(os.path.join(other, "catalog.json")):
+                libs.append(other)
+    books, seen = [], set()
+    for lib in libs:
+        for b in json.load(_open(os.path.join(lib, "catalog.json")))["books"]:
+            if b["code"] in seen: continue
+            seen.add(b["code"]); b["_lib"] = lib; books.append(b)
+    return {"books": books}
 
 def norm(s):
     s = MARK.sub(" ", s)
@@ -34,8 +54,7 @@ def norm(s):
 _RAW = {}
 def raw_text(b):
     if b["code"] not in _RAW:
-        path = os.path.join(LIB, b["file"])
-        _RAW[b["code"]] = (gzip.open(path, "rt", encoding="utf-8") if path.endswith(".gz") else open(path, encoding="utf-8")).read()
+        _RAW[b["code"]] = _open(os.path.join(b.get("_lib", LIB), b["file"])).read()
     return _RAW[b["code"]]
 
 def may_contain(b, words):
@@ -73,8 +92,7 @@ def looks_like_index(text):
 def link(b, page):
     pm = b.get("_pagemap")
     if pm is None and b.get("pagemap"):
-        pp = os.path.join(LIB, b["pagemap"])
-        pm = json.load(gzip.open(pp, "rt", encoding="utf-8") if pp.endswith(".gz") else open(pp, encoding="utf-8"))["pages"]
+        pm = json.load(_open(os.path.join(b.get("_lib", LIB), b["pagemap"])))["pages"]
         b["_pagemap"] = pm
     if b["source"] == "archive.org" and pm and page in pm:
         v = pm[page]
