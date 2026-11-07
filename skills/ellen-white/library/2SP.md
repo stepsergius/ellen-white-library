@@ -36,8 +36,6 @@ iivr "••" *--«■»
 
 <7
 
-Center for Adventist Her
-
 Andrews Univf . Berrien Springs, fv\.;. ,.
 
 {p. leaf2b}
@@ -65,8 +63,6 @@ iivr "••" *--«■»
 10 10 faine parvetiii- .„„ s„.die„, du KbST,^^
 
 <7
-
-Center for Adventist Her
 
 Andrews Univf . Berrien Springs, fv\.;. ,.
 
@@ -1058,7 +1054,7 @@ As Son of the Most High, and Saviour of the world, no earthly ties must hold him
 
 Jesus loved his mother tenderly; for thirty years he had been subject to parental control; but the time had now come when he was to go about his Fathers business. In rebuking his
 
-Center for Adventist Research Andrews University Berrien Springs, Michigan
+Andrews University Berrien Springs, Michigan
 
 {p. 102}
 

@@ -46,11 +46,7 @@ Ae s. fe a
 
 . a3 Yes a “
 
-‘ ; i ' P f. ‘ ‘ , ' - —_——. ~ 1 | fea ' ! i y j : a ee 4 a " = ‘ 5 - ' . e } le 35
-
-{p. leaf7}
-
-Digitized by the Internet Archive in 2025
+‘ ; i ' P f. ‘ ‘ , ' - —_——. ~ 1 | fea ' ! i y j : a ee 4 a " = ‘ 5 - ' . e } le 35 {p. leaf7} in 2025
 
 https://archive.org/details/thoughtsfrommoun0000egwh
 

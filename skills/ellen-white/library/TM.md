@@ -472,7 +472,7 @@ hetereey seaetacete
 
 {p. leaf6}
 
-Digitized by the Internet Archive in 2025
+in 2025
 
 https://archive.org/details/testimoniestominO000elle
 

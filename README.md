@@ -32,11 +32,12 @@ python3 skills/ellen-white/scripts/egw_search.py page GC 415
 | Source | Quality |
 |---|---|
 | Project Gutenberg — *The Great Controversy* (1911), *Education* (1903), *Patriarchs and Prophets* (1913 printing) | proofread |
-| Internet Archive scans — *The Desire of Ages* (1898), *Steps to Christ*, *The Ministry of Healing*, *The Acts of the Apostles*, *Christ's Object Lessons*, *Prophets and Kings*, *Early Writings*, *Gospel Workers*, *Life Sketches*, *Testimonies*, *Spirit of Prophecy*, *Spiritual Gifts* and more | OCR (may contain recognition errors; every hit links to the page scan) |
+| Internet Archive scans — *The Desire of Ages* (1898), *Steps to Christ*, *The Ministry of Healing*, *The Acts of the Apostles*, *Christ's Object Lessons*, *Prophets and Kings*, *Early Writings*, *Gospel Workers*, *Life Sketches*, *Testimonies for the Church* vols. 1–4 and 9, *Spirit of Prophecy* vols. 1–4, *Spiritual Gifts*, *Special Testimonies* (Series A and B), early testimony pamphlets and broadsides (1846–1885), *Bible Sanctification*, *An Appeal to Mothers* and more | OCR (may contain recognition errors; every hit links to the page scan) |
+| Scanned periodicals — her *Review and Herald* articles 1904–1909 (226 articles, from a facsimile volume) and a few *Health Reformer* articles (1866–1877) | OCR; article boundaries detected automatically |
 
 Run `list` for the full list.
 
-**Not included:** letters and manuscripts, periodical articles, and compilations published after 1930 (*Counsels on Diet and Foods*, *Evangelism*, *Selected Messages*, *The Adventist Home*, *Last Day Events*, etc.), which are still under copyright.
+**Not included:** letters and manuscripts (the only complete digital edition comes from the Ellen G. White Estate, and part of it is under US copyright until 2047), most periodical articles (no public scans of the original issues were found apart from those above), *Testimonies* vols. 5–8 (no freely accessible scan), and compilations published after 1930 (*Counsels on Diet and Foods*, *Evangelism*, *Selected Messages*, *The Adventist Home*, *Last Day Events*, etc.), which are still under copyright.
 
 ## Page numbers
 

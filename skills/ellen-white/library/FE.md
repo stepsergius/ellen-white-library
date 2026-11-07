@@ -22,7 +22,7 @@ Lak tals
 
 {p. 1}
 
-Digitized by the Internet Archive in 2022 with funding from Kahle/Austin Foundation
+in 2022 with funding from Kahle/Austin Foundation
 
 https://archive.org/details/fundamentalsofchOO0Oelle
 

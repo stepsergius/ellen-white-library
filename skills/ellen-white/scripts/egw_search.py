@@ -61,7 +61,9 @@ def link(b, page):
         pm = json.load(open(os.path.join(LIB, b["pagemap"]), encoding="utf-8"))["pages"]
         b["_pagemap"] = pm
     if b["source"] == "archive.org" and pm and page in pm:
-        return f"https://archive.org/details/{b['item']}/page/n{pm[page]-1}/mode/1up"
+        v = pm[page]
+        item, leaf = (v.rsplit(":", 1)[0], int(v.rsplit(":", 1)[1])) if isinstance(v, str) else (b["item"], v)
+        return f"https://archive.org/details/{item}/page/n{leaf-1}/mode/1up"
     if b["source"] == "gutenberg" and b.get("anchor") and page and page.isdigit():
         return b["url_html"] + "#" + b["anchor"].format(n=int(page))
     return b.get("url")

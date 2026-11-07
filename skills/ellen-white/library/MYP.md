@@ -20,7 +20,7 @@ V/:;:PE
 
 {p. leaf4}
 
-Digitized by the Internet Archive in 2010
+in 2010
 
 http://www.archive.org/details/messagestoyoungpOOwhit
 

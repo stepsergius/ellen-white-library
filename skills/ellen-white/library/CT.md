@@ -2486,8 +2486,6 @@ There is need that much time be spent in secret prayer, in close communion with 
 
 The Lord's covenant is with His saints. Every one is to discern his weak points of character, and guard against them with rigor. Those who have been buried with Christ in baptism, and been raised in the likeness of His resurrection, have pledged themselves to live in newness of life. "If ye then be risen with Christ, seek those things which are above, where Christ sitteth on the right hand of God. Set your affection on things above, not on things on the earth. For ye are dead, and your life is hid with Christ in God. When Christ, who is our life, shall appear, then shall ye also appear with Him in glory. ' ' Col. 3 : 1-4.
 
--0-
-
 The Christian youth should be trained to bear responsibilities with brave heart and willing hand. He should learn to encounter the trials of life with patience and fortitude, to follow maxims of worth, and to confirm himself in habits that will enable him to win the victor's crown. There is no time more favorable in which to acknowledge the power of Christ's saving grace and to be controlled by the principles of the divine law.
 
 Wherever in His providence God has placed you, He will keep you. "As thy days, so shall thy strength be." Deut 33:25.

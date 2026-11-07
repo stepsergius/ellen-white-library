@@ -24,7 +24,7 @@ ANDREWS UNIVERSITY
 
 BERRIEN SPRINGS, MICHIGAN
 
-Center for Adventist Research Andrews University Berrien Springs, Michigan
+Andrews University Berrien Springs, Michigan
 
 {p. leaf2b}
 
@@ -34,7 +34,7 @@ ANDREWS UNIVERSITY
 
 BERRIEN SPRINGS, MICHIGAN
 
-Center for Adventist Research Andrews University Berrien Springs, Michigan
+Andrews University Berrien Springs, Michigan
 
 {p. leaf3b}
 

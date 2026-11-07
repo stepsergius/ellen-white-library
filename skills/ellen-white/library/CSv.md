@@ -20,8 +20,6 @@ note: "OCR text of a scanned public-domain edition from archive.org; may contain
 
 {p. leaf6}
 
-Digitized by tine Internet Archive
-
 in 2007 with funding from
 
 IVIicrosoft Corporation

@@ -20,8 +20,6 @@ jj
 
 {p. leaf4}
 
-Digitized by the Internet Archive
-
 in 2007 with funding from
 
 IVIicrosoft Corporation
