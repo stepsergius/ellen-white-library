@@ -54,7 +54,23 @@ def norm(s):
 _RAW = {}
 def raw_text(b):
     if b["code"] not in _RAW:
-        _RAW[b["code"]] = _open(os.path.join(b.get("_lib", LIB), b["file"])).read()
+        path = os.path.join(b.get("_lib", LIB), b["file"])
+        text = None
+        if path.endswith((".gz", ".xz")):   # cache the unpacked text in the temp dir: later searches skip decompression
+            import tempfile, hashlib
+            st = os.stat(path)
+            key = hashlib.md5(f"{path}|{st.st_size}|{st.st_mtime}".encode()).hexdigest()
+            cache = os.path.join(tempfile.gettempdir(), "egw_cache", key + ".txt")
+            try:
+                text = open(cache, encoding="utf-8").read()
+            except OSError:
+                text = _open(path).read()
+                try:
+                    os.makedirs(os.path.dirname(cache), exist_ok=True)
+                    with open(cache + ".tmp", "w", encoding="utf-8") as f: f.write(text)
+                    os.replace(cache + ".tmp", cache)
+                except OSError: pass
+        _RAW[b["code"]] = text if text is not None else _open(path).read()
     return _RAW[b["code"]]
 
 def may_contain(b, words):
@@ -171,7 +187,11 @@ def main(argv):
         for b in sel:
             if not opts.get("regex") and words and not may_contain(b, words): continue
             paras = load_book(b)
+            quick = [w.split("'")[0] for w in words] if not (opts.get("regex") or opts.get("any")) else None
             for k, p in enumerate(paras):
+                if quick:
+                    low = unicodedata.normalize("NFKD", p["text"].lower())
+                    if not all(w in low for w in quick): continue   # cheap pre-check before full normalization
                 t = norm(p["text"])
                 if opts.get("regex"): ok = re.search(q, t) is not None
                 elif opts.get("phrase"): ok = (" " + nq + " ") in (" " + t + " ")
