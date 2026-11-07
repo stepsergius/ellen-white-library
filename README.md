@@ -32,7 +32,7 @@ python3 skills/ellen-white/scripts/egw_search.py page GC 415
 | Source | Quality |
 |---|---|
 | Project Gutenberg — *The Great Controversy* (1911), *Education* (1903), *Patriarchs and Prophets* (1913 printing) | proofread |
-| Internet Archive scans — *The Desire of Ages* (1898), *Steps to Christ*, *The Ministry of Healing*, *The Acts of the Apostles*, *Christ's Object Lessons*, *Prophets and Kings*, *Early Writings*, *Gospel Workers*, *Life Sketches*, *Testimonies for the Church* vols. 1–4 and 9, *Spirit of Prophecy* vols. 1–4, *Spiritual Gifts*, *Special Testimonies* (Series A and B), early testimony pamphlets and broadsides (1846–1885), *Bible Sanctification*, *An Appeal to Mothers* and more | OCR (may contain recognition errors; every hit links to the page scan) |
+| Internet Archive scans — *The Desire of Ages* (1898), *Steps to Christ*, *The Ministry of Healing*, *The Acts of the Apostles*, *Christ's Object Lessons*, *Prophets and Kings*, *Early Writings*, *Gospel Workers*, *Life Sketches*, *Testimonies for the Church* vols. 1–4 and 9, *Spirit of Prophecy* vols. 1–4, *Spiritual Gifts* vols. 1–4, *Redemption* pamphlets Nos. 6–8, *Special Testimonies* (Series A and B), early testimony pamphlets and broadsides (1846–1885), *Bible Sanctification*, *An Appeal to Mothers* and more | OCR (may contain recognition errors; every hit links to the page scan) |
 | Scanned periodicals — her *Review and Herald* articles 1904–1909 (226 articles, from a facsimile volume) and 10 *Health Reformer* articles (1866–1880) | OCR; article boundaries detected automatically |
 
 Run `list` for the full list.

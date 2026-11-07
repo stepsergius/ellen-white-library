@@ -1,7 +1,7 @@
 {
   "name": "ellen-white",
   "description": "Search and quote Ellen G. White's public-domain writings with exact edition and page, plus translation into the language of the question.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": { "name": "stepsergius" },
   "homepage": "https://github.com/stepsergius/ellen-white-library",
   "license": "MIT"

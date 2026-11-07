@@ -1117,6 +1117,54 @@
    "note": "OCR text of a scanned public-domain edition from archive.org; may contain recognition errors. Page numbers {p. N} are those printed in this edition ({p. leafN} = unnumbered scan page N)."
   },
   {
+   "code": "3SG",
+   "title": "Spiritual Gifts, Vol. 3 (Important Facts of Faith)",
+   "year": "1864",
+   "source": "archive.org",
+   "quality": "ocr",
+   "item": "WhiteEllenImportantFactsOfFaithInConnectionWithTheHistoryOfHoly",
+   "url": "https://archive.org/details/WhiteEllenImportantFactsOfFaithInConnectionWithTheHistoryOfHoly",
+   "file": "3SG.md",
+   "pagemap": "3SG.pages.json",
+   "note": "OCR text of a scanned public-domain edition from archive.org; may contain recognition errors. Page numbers {p. N} are those printed in this edition ({p. leafN} = unnumbered scan page N)."
+  },
+  {
+   "code": "RED6",
+   "title": "Redemption: or the Resurrection of Christ, and His Ascension (No. 6)",
+   "year": "1877",
+   "source": "archive.org",
+   "quality": "ocr",
+   "item": "WhiteEllen.RedemptionOrTheResurrectionOfChristAndHisAscension",
+   "url": "https://archive.org/details/WhiteEllen.RedemptionOrTheResurrectionOfChristAndHisAscension",
+   "file": "RED6.md",
+   "pagemap": "RED6.pages.json",
+   "note": "OCR text of a scanned public-domain edition from archive.org; may contain recognition errors. Page numbers {p. N} are those printed in this edition ({p. leafN} = unnumbered scan page N)."
+  },
+  {
+   "code": "RED7",
+   "title": "Redemption: or the Ministry of Peter and the Conversion of Saul (No. 7)",
+   "year": "1878",
+   "source": "archive.org",
+   "quality": "ocr",
+   "item": "WhiteEllen.RedemptionOrTheMinistryOfPeterAndTheConversionOfSaul",
+   "url": "https://archive.org/details/WhiteEllen.RedemptionOrTheMinistryOfPeterAndTheConversionOfSaul",
+   "file": "RED7.md",
+   "pagemap": "RED7.pages.json",
+   "note": "OCR text of a scanned public-domain edition from archive.org; may contain recognition errors. Page numbers {p. N} are those printed in this edition ({p. leafN} = unnumbered scan page N)."
+  },
+  {
+   "code": "RED8",
+   "title": "Redemption: or the Teachings of Paul, and His Mission to the Gentiles (No. 8)",
+   "year": "1878",
+   "source": "archive.org",
+   "quality": "ocr",
+   "item": "WhiteEllen.RedemptionOrTheTeachingOfPaulAndHisMissionToThe",
+   "url": "https://archive.org/details/WhiteEllen.RedemptionOrTheTeachingOfPaulAndHisMissionToThe",
+   "file": "RED8.md",
+   "pagemap": "RED8.pages.json",
+   "note": "OCR text of a scanned public-domain edition from archive.org; may contain recognition errors. Page numbers {p. N} are those printed in this edition ({p. leafN} = unnumbered scan page N)."
+  },
+  {
    "code": "RH0409",
    "title": "Review and Herald articles, 1904–1909",
    "year": "1904–1909 (facsimile reprint)",

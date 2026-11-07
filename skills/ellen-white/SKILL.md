@@ -1,6 +1,6 @@
 ---
 name: ellen-white
-description: Search and quote Ellen G. White's writings from a bundled library of public-domain English editions (Great Controversy, Desire of Ages, Patriarchs and Prophets, Steps to Christ, Ministry of Healing, Education, Testimonies for the Church, Spirit of Prophecy, Special Testimonies, early pamphlets and broadsides — about 90 titles — plus her Review and Herald articles of 1904–1909). Use whenever the user asks what Ellen White (Елен Вайт, Еллен Уайт, EGW, Spirit of Prophecy, Дух пророцтва) wrote or said about a topic, asks for a quote or its source, wants a quote checked, or wants a reference like "DA 25" or "GC 415" looked up. Answers with verbatim English quotes plus page numbers of the original edition, followed by a translation into the language of the question.
+description: Search and quote Ellen G. White's writings from a bundled library of public-domain English editions (Great Controversy, Desire of Ages, Patriarchs and Prophets, Steps to Christ, Ministry of Healing, Education, Testimonies for the Church, Spirit of Prophecy, Special Testimonies, early pamphlets and broadsides, Spiritual Gifts vol. 3, Redemption pamphlets — about 100 titles — plus her Review and Herald articles of 1904–1909). Use whenever the user asks what Ellen White (Елен Вайт, Еллен Уайт, EGW, Spirit of Prophecy, Дух пророцтва) wrote or said about a topic, asks for a quote or its source, wants a quote checked, or wants a reference like "DA 25" or "GC 415" looked up. Answers with verbatim English quotes plus page numbers of the original edition, followed by a translation into the language of the question.
 ---
 
 # Ellen G. White library search
@@ -49,6 +49,7 @@ These files hold her articles from scanned issues of the *Review and Herald* (19
 
 - *Special Testimonies to Ministers and Workers*, Nos. 1–11 (codes SpTA1–SpTA11) are a 1958 retyped reprint (Health Research); the page numbers are those of the reprint, not of the 1890s pamphlets. Cite as "*Special Testimonies to Ministers and Workers*, No. 3 (1895; 1958 reprint), p. N". The reprint's prefaces are not by Ellen White.
 - *Special Testimonies, Series B* (codes SpTB01–SpTB22) is one scan of many separate pamphlets; it was split where the page numbering restarts, so a "scan part" may begin with the title pages of the next pamphlet. Name the pamphlet from its title page (use `page`) and always give the scan link.
+- *Spiritual Gifts* vol. 3 (code 3SG, 1864) is the original "Important Facts of Faith" volume (Genesis to Exodus); the *Redemption* pamphlets Nos. 6–8 (codes RED6–RED8, 1877–78) were later revised into *The Spirit of Prophecy* vol. 3 and *Sketches from the Life of Paul*.
 - Testimony pamphlets (1T55, 2T56, T4n, T12, T16, T32) are early separate numbers; the same texts were later gathered in *Testimonies for the Church* vols. 1–4 (1T, 2T, 3T, 4T) with different page numbers. Prefer the volume when the passage is there.
 
 ## Not everything in a book is hers
