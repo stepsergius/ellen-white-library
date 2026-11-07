@@ -33,10 +33,12 @@ def load_book(b):
     path = os.path.join(LIB, b["file"])
     text = open(path, encoding="utf-8").read()
     body = text.split("\n---\n", 1)[1] if text.startswith("---\n") else text
-    paras, page = [], None
+    paras, page, art, sub = [], None, None, None
     for blk in re.split(r"\n\s*\n", body):
         blk = blk.strip()
         if not blk: continue
+        if blk.startswith("## "): art, sub = blk[3:].strip(), None; continue
+        if blk.startswith("### "): sub = blk[4:].strip()
         ms = MARK.findall(blk)
         lead = MARK.match(blk)
         if lead: page = lead.group(1)
@@ -46,7 +48,7 @@ def load_book(b):
         clean = re.sub(r"^\[p\. [^\]]+\]\s*", "", clean)
         if not clean: continue
         pages = [start] + [p for p in ms if p != start] if start else ms
-        paras.append({"pages": [p for p in pages if p], "text": clean})
+        paras.append({"pages": [p for p in pages if p], "text": clean, "art": art, "sub": sub})
     return paras
 
 def looks_like_index(text):
@@ -67,6 +69,13 @@ def link(b, page):
     if b["source"] == "gutenberg" and b.get("anchor") and page and page.isdigit():
         return b["url_html"] + "#" + b["anchor"].format(n=int(page))
     return b.get("url")
+
+def art_note(p):
+    s = f"Article: \"{p['art']}\""
+    if p.get("sub"):
+        s += (f"\nCAUTION: this paragraph comes after the heading \"{p['sub']}\" inside the extracted text. It may be her subheading, "
+              "or an unsigned item by someone else that follows her article. Read the article with `page` and quote it as hers only if it clearly continues her article.")
+    return s
 
 def fmt_pages(ps):
     ps = [p for p in ps if p]
@@ -90,7 +99,10 @@ def main(argv):
         hits = [p for p in load_book(b) if pg in p["pages"]]
         if not hits: sys.exit(f"Page {pg} not found in {code}.")
         print(f"## {cite(b, [pg])}\nSource: {link(b, pg)}\nText quality: {b['quality']}\n")
+        last_art = None
         for p in hits:
+            if b.get("kind") == "periodical" and p["art"] != last_art:
+                print(f"=== Article: \"{p['art']}\" ==="); last_art = p["art"]
             pre = f"[p. {p['pages'][0]}] " if p["pages"] and p["pages"][0] != pg else ""
             print(pre + p["text"] + "\n")
         return
@@ -121,6 +133,7 @@ def main(argv):
                 if n > opts["limit"]: continue
                 print(f"### {n}. {cite(b, p['pages'])}  [{b['quality']}]")
                 print(f"Source: {link(b, p['pages'][0] if p['pages'] else None)}")
+                if b.get("kind") == "periodical": print(art_note(p))
                 if opts.get("context") and k > 0: print("(prev) " + paras[k-1]["text"][-300:])
                 print(p["text"])
                 if opts.get("context") and k + 1 < len(paras): print("(next) " + paras[k+1]["text"][:300])
