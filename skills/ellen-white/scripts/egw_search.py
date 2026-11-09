@@ -13,6 +13,7 @@ QUERY by default matches paragraphs containing ALL words (case-insensitive,
 punctuation and OCR spacing ignored). --any = at least one word. --phrase = the
 exact word sequence. --regex = Python regex on normalized text.
 Index / table-of-contents lines are skipped unless --include-index is given.
+Ukrainian words match by stem ("ключ" finds "ключем"; also inside --phrase).
 Each hit prints: book code, edition, page(s), a link to the scan/source page, and the paragraph.
 """
 import gzip, json, lzma, os, re, sys, unicodedata
@@ -44,12 +45,30 @@ def catalog():
             seen.add(b["code"]); b["_lib"] = lib; books.append(b)
     return {"books": books}
 
+COMB = re.compile(r"[\u0300-\u036f]")
+def fold(s):
+    """Lower-case, drop accents/combining marks (so "й", "ї" stay one letter), unify apostrophes."""
+    s = COMB.sub("", unicodedata.normalize("NFKD", s.lower()))
+    return s.replace("’", "'").replace("‘", "'").replace("ʼ", "'")
+
 def norm(s):
-    s = MARK.sub(" ", s)
-    s = unicodedata.normalize("NFKD", s)
-    s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
-    s = re.sub(r"[^\w']+", " ", s.lower())
+    s = fold(MARK.sub(" ", s)).replace("“", '"').replace("”", '"')
+    s = re.sub(r"[^\w']+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
+
+# Ukrainian words are matched by their stem, so "ключ" finds "ключем", "друга" finds "Другу".
+UK_END = sorted({fold(e) for e in "ами ями ові еві ого ему ому ими ій ою ею ям ах ях ом ем им их ів ої ий ей а я у ю о е є і и ь й".split()}, key=len, reverse=True)
+def stem(w):
+    if not re.search(r"[а-яіїєґ]", w): return None
+    w = w.replace("'", "")
+    for e in UK_END:
+        if w.endswith(e) and len(w) - len(e) >= 3: return w[:-len(e)]
+    return w
+
+def word_re(w):
+    st = stem(w)
+    if st: return re.compile(r"\b" + re.escape(st) + r"\w*")
+    return re.compile(r"\b" + re.escape(w) + r"\b")
 
 _RAW = {}
 def raw_text(b):
@@ -73,10 +92,10 @@ def raw_text(b):
         _RAW[b["code"]] = text if text is not None else _open(path).read()
     return _RAW[b["code"]]
 
-def may_contain(b, words):
+def may_contain(b, words, any_word=False):
     """Cheap pre-check before splitting a whole book into paragraphs."""
-    low = norm(raw_text(b)) if len(raw_text(b)) < 200000 else unicodedata.normalize("NFKD", raw_text(b).lower()).replace("’", "'")
-    return all(w.split("'")[0] in low for w in words)
+    low = fold(raw_text(b))
+    return (any if any_word else all)((stem(w) or w.split("'")[0]).replace("'", "") in low.replace("'", "") for w in words)
 
 def load_book(b):
     text = raw_text(b)
@@ -99,7 +118,9 @@ def load_book(b):
         paras.append({"pages": [p for p in pages if p], "text": clean, "art": art, "sub": sub})
     return paras
 
+INDEX_ENTRY = re.compile(r"^[a-z][^.!?]{0,140},\s*(?!1[89]\d\d\b)\d+(?:[–-]\d+)?(?:,\s*\d+(?:[–-]\d+)?)*\.?$")
 def looks_like_index(text):
+    if len(text) < 160 and INDEX_ENTRY.match(text): return True     # e.g. "the breath of the soul, 85."
     toks = text.split()
     if len(toks) < 6: return False
     nums = sum(1 for t in toks if re.fullmatch(r"[\d,;.\-–]+", t))
@@ -128,7 +149,7 @@ def art_note(p):
 def fmt_pages(ps):
     ps = [p for p in ps if p]
     if not ps: return "p. ?"
-    if re.match(r"(Lt|Ms) ", ps[0]): return ps[0] if len(ps) == 1 else f"{ps[0]} – {ps[-1]}"
+    if re.match(r"(Lt|Ms) ", ps[0]) or re.search(r"par\. \d", ps[0]): return ps[0] if len(ps) == 1 else f"{ps[0]} – {ps[-1]}"
     return f"p. {ps[0]}" if len(ps) == 1 else f"pp. {ps[0]}–{ps[-1]}"
 
 def cite(b, ps):
@@ -185,18 +206,24 @@ def main(argv):
         if opts.get("lang"): sel = [b for b in sel if b.get("lang", "en") == opts["lang"]]
         n = 0
         for b in sel:
-            if not opts.get("regex") and words and not may_contain(b, words): continue
+            if not opts.get("regex") and words and not may_contain(b, words, opts.get("any")): continue
             paras = load_book(b)
-            quick = [w.split("'")[0] for w in words] if not (opts.get("regex") or opts.get("any")) else None
+            quick = [(stem(w) or w.split("'")[0]).replace("'", "") for w in words] if not (opts.get("regex") or opts.get("any")) else None
+            wres = [word_re(w) for w in words]
             for k, p in enumerate(paras):
                 if quick:
-                    low = unicodedata.normalize("NFKD", p["text"].lower())
+                    low = fold(p["text"]).replace("'", "")
                     if not all(w in low for w in quick): continue   # cheap pre-check before full normalization
                 t = norm(p["text"])
                 if opts.get("regex"): ok = re.search(q, t) is not None
-                elif opts.get("phrase"): ok = (" " + nq + " ") in (" " + t + " ")
-                elif opts.get("any"): ok = any(re.search(r"\b" + re.escape(w) + r"\b", t) for w in words)
-                else: ok = all(re.search(r"\b" + re.escape(w) + r"\b", t) for w in words)
+                elif opts.get("phrase"):
+                    if any(stem(w) for w in words):   # Ukrainian phrase: the same words in order, any endings
+                        ok = re.search(r"\b" + r"\w*\W+".join(re.escape(stem(w) or w) for w in words) + r"\w*", t.replace("'", "")) is not None
+                    else: ok = (" " + nq + " ") in (" " + t + " ")
+                else:
+                    t2 = t.replace("'", "")     # Ukrainian apostrophes (п'ять) are ignored in stem matching
+                    hits = [r.search(t2 if stem(w) else t) for r, w in zip(wres, words)]
+                    ok = any(hits) if opts.get("any") else all(hits)
                 if not ok: continue
                 if not opts.get("include-index") and looks_like_index(p["text"]): continue
                 n += 1
